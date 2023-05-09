@@ -1,15 +1,24 @@
-# Excalibur Startproject 2023
+# Inleveropdracht
 
-![fishes](./src/images/preview.png)
+In week 1 kies je een van onderstaande templates. Je gaat hier tijdens de lessen en in je zelfstudietijd aan werken. 
 
-- Klik op USE THIS TEMPLATE. Kies als owner jouw eigen github account. 
-- Geef het project een coole naam en check dat dit startproject nu in je eigen github staat.
-- CLONE de repository van jouw eigen github naar je lokale computer via de git url. Die vind je onder "code".
-- Open VS Code. Klik het "Source Control" icoontje. Kies voor "clone repository" en plak de git url.
-- VS Code haalt nu het startproject op en opent het automatisch.
-- Kies een map die je ook via localhost kan openen, bijvoorbeeld `xampp/htdocs/mijnproject`.
-- Typ `npm install` en `npm run dev` in de terminal in VS Code.
+- De templates dienen om jou een realistisch doel te geven om naartoe te werken.
+- Het is ***niet*** verplicht dat je alle onderdelen van deze templates in je game hebt verwerkt.
+- Het is ***wel*** verplicht dat je de onderwerpen uit de lessen in je game hebt verwerkt. Zie voor de beoordeling de cursushandleiding!
 
-[🔥 Bekijk het instructie filmpje!](https://youtu.be/UIVpe4L5_P4)
+### Top-down RPG
+- Rondlopen met camera op player
+- Niet door gebouwen of bomen heen kunnen lopen
+- "Praten" met characters
+- Inventory, object zoals een sleutel kunnen meenemen en gebruiken
+- Tilemap voor omgeving, of custom colliders op een achtergrondplaat
 
-[Lees verder over het publiceren op github pages](https://github.com/HR-CMGT/PRG04-2022-2023/blob/main/setup.md)
+## Game Assets
+
+- [Excalibur startproject](https://github.com/HR-CMGT/prg4-startproject-2023), gebruik dit als basis voor je game.
+- [Open Game Art](https://opengameart.org) en [Kenney Assets](https://www.kenney.nl/assets)
+- [Midjourney](https://enchanting-trader-463.notion.site/Midjourney-AI-Guide-41eca43809dd4d8fa676e648436fc29c)
+- [Font Loader](https://fontfaceobserver.com)
+- [Game Icons](https://game-icons.net)
+- [Game Sounds](https://www.zapsplat.com) en [Game Music](https://www.bensound.com)
+- [Generate your own game Sounds](https://sfxr.me), [FreeSound](https://freesound.org)
