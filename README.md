@@ -13,6 +13,90 @@ In week 1 kies je een van onderstaande templates. Je gaat hier tijdens de lessen
 - Inventory, object zoals een sleutel kunnen meenemen en gebruiken
 - Tilemap voor omgeving, of custom colliders op een achtergrondplaat
 
+## Opdracht 
+
+De eerste stap bij Objectgeoriënteerd programmeren is het bedenken van classes. Noteer voor je eigen 
+game de classes die je nodig hebt. Vervolgens bepaal je per class de eigenschappen (variabelen) en het gedrag (functies).
+
+Een handig hulpmiddel hierbij is het volgende stappenplan:
+1. Schrijf de regels van je spel uit en onderstreep de zelfstandige naamwoorden.
+- Rondlopen met *camera* op *player*
+- Niet door *gebouwen* of *bomen* heen kunnen lopen
+- "Praten" met *characters*
+- *Inventory*, object zoals een *sleutel* kunnen meenemen en gebruiken
+- *Tilemap* voor *omgeving*, of *custom colliders* op een *achtergrondplaat*
+
+2. Bepaal welke zelfstandige naamwoorden een class kunnen zijn. Is het een zelfstandignaamwoord waarvoor je iets wilt opslaan? Of voer het iets uit in je spel?
+- camera = Camera class
+- player = Player class
+- gebouwen & bomen = Object class
+- characters = Character class
+- Inventory = Inventory class
+- sleutel = Item class
+- Tilemap/omgeving = World/Map class
+
+3. Er zullen zelfstandignaamwoorden afvallen, omdat ze geen class hoeven te zijn of omdat ze een eigenschap zijn van een ander zelfstandignaamwoord.
+4. De zelfstandignaamwoorden die overblijven zijn de classes.
+
+5. Noteer de eigenschappen bij de classes. Waar moet deze class over zichzelf onthouden?
+Camera class:
+- Rondlopen op player
+
+Player class:
+- Praten met characters
+- Inventory, object zoals een sleutel kunnen meenemen en gebruiken
+
+Object class:
+- Niet door gebouwen of bomen heen kunnen lopen
+
+Character class:
+- Praten met characters
+
+Inventory class:
+- Inventory, object zoals een sleutel kunnen meenemen en gebruiken
+
+Item class:
+- Inventory, object zoals een sleutel kunnen meenemen en gebruiken
+
+World/map class:
+- Rondlopen met camera op player
+- Niet door gebouwen of bomen heen kunnen lopen
+- Tilemap voor omgeving, of custom colliders op een achtergrondplaat
+
+6. Rond de zelfstandignaamwoorden staan werkwoorden. Dit is vaak het bijbehorende gedrag.
+- *Rondlopen* met camera op player
+- Niet *door* gebouwen of bomen *heen kunnen lopen*
+- *"Praten"* met characters
+- Inventory, object zoals een sleutel kunnen *meenemen* en *gebruiken*
+- Tilemap voor omgeving, of custom colliders op een achtergrondplaat
+
+Bijbehorend gedrag:
+Camera class:
+- Rondlopen = volgen
+
+Player class:
+- Rondlopen = bewegen
+- Praten = interactie
+- meenemen = toevoegen aan inventory
+- gebruiken = gebruiken van item
+
+Object class:
+- door heen kunnen lopen = onbeweeglijk voorwerp
+
+Character class:
+- Praten = interactie
+
+Inventory class:
+- meenemen = toevoegen aan inventory
+- gebruiken = gebruiken van item
+
+Item class:
+- meenemen = toevoegen aan inventory
+- gebruiken = gebruiken van item
+
+World/map class:
+- Rondlopen = positie/coördineren
+
 ## Game Assets
 
 - [Excalibur startproject](https://github.com/HR-CMGT/prg4-startproject-2023), gebruik dit als basis voor je game.
