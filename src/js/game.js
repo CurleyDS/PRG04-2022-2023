@@ -29,18 +29,10 @@ export class Game extends Engine {
         this.add(label)
 
         for (let x = 0; x < 5; x++) {
-            const fish = new Fish({
-                width: Resources.Fish.width,
-                height: Resources.Fish.height
-            })
-            fish.graphics.use(Resources.Fish.toSprite())
+            const fish = new Fish()
             this.add(fish)
     
-            const shark = new Shark({
-                width: Resources.Shark.width,
-                height: Resources.Shark.height
-            })
-            shark.graphics.use(Resources.Shark.toSprite())
+            const shark = new Shark()
             this.add(shark)
         }
     }

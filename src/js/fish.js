@@ -2,7 +2,15 @@ import { Actor, Vector } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
 
 export class Fish extends Actor {
+    constructor(){
+        super({
+            width: Resources.Fish.width,
+            height: Resources.Fish.height
+        })
+    }
+
     onInitialize(engine){
+        this.graphics.use(Resources.Fish.toSprite())
         this.pos = new Vector(Math.random()*400 + 300, Math.random()*300 + 200)
         this.vel = new Vector(-100,0)
         this.enableCapturePointer = true
