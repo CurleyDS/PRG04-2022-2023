@@ -1,6 +1,8 @@
 import '../css/style.css'
-import { Actor, Engine, Vector } from "excalibur"
+import { Actor, Engine, Vector, Label, FontUnit, Font } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
+import { Fish } from './fish.js'
+import { Shark } from './shark.js'
 
 export class Game extends Engine {
 
@@ -10,41 +12,37 @@ export class Game extends Engine {
     }
 
     startGame() {
-        console.log("start de game!")
         const background = new Actor()
         background.graphics.use(Resources.Background.toSprite())
         background.pos = new Vector(400, 300)
         this.add(background)
 
-        const fish = new Actor({
-            width: Resources.Fish.width,
-            height: Resources.Fish.height
-        })
-        fish.graphics.use(Resources.Fish.toSprite())
-        fish.pos = new Vector(400, 300)
-        fish.vel = new Vector(-100,0)
-        fish.on("pointerup", function (event) {
-            fish.graphics.use(Resources.Bones.toSprite())
-        })
-        fish.on("exitviewport", (event) => {
-            fish.pos = new Vector(900, Math.random()*300 + 200)
-        })
-        this.add(fish)
+        const label = new Label({
+            text: 'Kill da FISHIES',
+            pos: new Vector(0, 50),
+            font: new Font({
+                family: 'impact',
+                size: 48,
+                unit: FontUnit.Px
+            })
+        });
+        this.add(label)
 
-        const shark = new Actor({
-            width: Resources.Shark.width,
-            height: Resources.Shark.height
-        })
-        shark.graphics.use(Resources.Shark.toSprite())
-        shark.pos = new Vector(200, 150)
-        shark.vel = new Vector(-100,0)
-        shark.on("pointerup", function (event) {
-            shark.graphics.use(Resources.Bones.toSprite())
-        })
-        shark.on("exitviewport", (event) => {
-            shark.pos = new Vector(900, Math.random()*300 + 200)
-        })
-        this.add(shark)
+        for (let x = 0; x < 5; x++) {
+            const fish = new Fish({
+                width: Resources.Fish.width,
+                height: Resources.Fish.height
+            })
+            fish.graphics.use(Resources.Fish.toSprite())
+            this.add(fish)
+    
+            const shark = new Shark({
+                width: Resources.Shark.width,
+                height: Resources.Shark.height
+            })
+            shark.graphics.use(Resources.Shark.toSprite())
+            this.add(shark)
+        }
     }
 }
 
