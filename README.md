@@ -71,6 +71,7 @@ World/map class:
 - Tilemap voor omgeving, of custom colliders op een achtergrondplaat
 
 Bijbehorend gedrag:
+
 Camera class:
 - Rondlopen = volgen
 
