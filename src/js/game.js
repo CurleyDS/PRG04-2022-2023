@@ -16,10 +16,10 @@ export class Game extends Engine {
     }
 
     startGame() {
-        const background = new Actor()
-        background.graphics.use(Resources.Background.toSprite())
-        background.pos = new Vector(400, 300)
-        this.add(background)
+        const bg = new Actor()
+        bg.graphics.use(Resources.Background.toSprite())
+        bg.pos = new Vector(400, 300)
+        this.add(bg)
     
         const shark = new Shark()
         this.add(shark)
