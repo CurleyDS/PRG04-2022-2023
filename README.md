@@ -6,12 +6,15 @@ In week 1 kies je een van onderstaande templates. Je gaat hier tijdens de lessen
 - Het is ***niet*** verplicht dat je alle onderdelen van deze templates in je game hebt verwerkt.
 - Het is ***wel*** verplicht dat je de onderwerpen uit de lessen in je game hebt verwerkt. Zie voor de beoordeling de cursushandleiding!
 
-### Top-down RPG
-- Rondlopen met camera op player
-- Niet door gebouwen of bomen heen kunnen lopen
-- "Praten" met characters
-- Inventory, object zoals een sleutel kunnen meenemen en gebruiken
-- Tilemap voor omgeving, of custom colliders op een achtergrondplaat
+### Space Shooter
+- Eindeloos scrollende achtergrond
+- Speler kan alle kanten op bewegen
+- Collision detection met vijanden, powerups, obstakels
+- Speler kan schieten. Kogels kunnen opgaan.
+- Speler heeft bommen die het hele scherm in een keer leeg maken.
+- Vijanden kunnen schieten
+- Life bar gaat omlaag bij aanraking met vijand
+- Variatie in achtergond door planeten, sterren te laten voorbijkomen waar je niet mee kan botsen
 
 ## Opdracht 
 
@@ -20,83 +23,74 @@ game de classes die je nodig hebt. Vervolgens bepaal je per class de eigenschapp
 
 Een handig hulpmiddel hierbij is het volgende stappenplan:
 1. Schrijf de regels van je spel uit en onderstreep de zelfstandige naamwoorden.
-- Rondlopen met *camera* op *player*
-- Niet door *gebouwen* of *bomen* heen kunnen lopen
-- "Praten" met *characters*
-- *Inventory*, object zoals een *sleutel* kunnen meenemen en gebruiken
-- *Tilemap* voor *omgeving*, of *custom colliders* op een *achtergrondplaat*
+
+- Eindeloos scrollende *achtergrond*
+- *Speler* kan alle kanten op bewegen
+- *Collision detection* met *vijanden*, *powerups*, *obstakels*
+- *Speler* kan schieten. *Kogels* kunnen opgaan.
+- *Speler* heeft *bommen* die het hele *scherm* in een keer leeg maken.
+- *Vijanden* kunnen schieten
+- *Life bar* gaat omlaag bij aanraking met *vijand*
+- Variatie in *achtergond* door *planeten*, *sterren* te laten voorbijkomen waar je niet mee kan botsen
 
 2. Bepaal welke zelfstandige naamwoorden een class kunnen zijn. Is het een zelfstandignaamwoord waarvoor je iets wilt opslaan? Of voer het iets uit in je spel?
-- camera = Camera class
-- player = Player class
-- gebouwen & bomen = Object class
-- characters = Character class
-- Inventory = Inventory class
-- sleutel = Item class
-- Tilemap/omgeving = World/Map class
+
+- speler = Player class
+- vijanden = Enemy class
+- powerups/obstakels = Object class
+- kogels/bommen/planeten/sterren = Projectile class
 
 3. Er zullen zelfstandignaamwoorden afvallen, omdat ze geen class hoeven te zijn of omdat ze een eigenschap zijn van een ander zelfstandignaamwoord.
+
 4. De zelfstandignaamwoorden die overblijven zijn de classes.
 
 5. Noteer de eigenschappen bij de classes. Waar moet deze class over zichzelf onthouden?
-Camera class:
-- Rondlopen op player
 
 Player class:
-- Praten met characters
-- Inventory, object zoals een sleutel kunnen meenemen en gebruiken
+- Ammo
+- Bombs
+- Life bar
+
+Enemy class:
+- Collision
+- Damage
 
 Object class:
-- Niet door gebouwen of bomen heen kunnen lopen
+- Collision
 
-Character class:
-- Praten met characters
-
-Inventory class:
-- Inventory, object zoals een sleutel kunnen meenemen en gebruiken
-
-Item class:
-- Inventory, object zoals een sleutel kunnen meenemen en gebruiken
-
-World/map class:
-- Rondlopen met camera op player
-- Niet door gebouwen of bomen heen kunnen lopen
-- Tilemap voor omgeving, of custom colliders op een achtergrondplaat
+Projectile class:
+- Collision
+- Damage
 
 6. Rond de zelfstandignaamwoorden staan werkwoorden. Dit is vaak het bijbehorende gedrag.
-- *Rondlopen* met camera op player
-- Niet *door* gebouwen of bomen *heen kunnen lopen*
-- *"Praten"* met characters
-- Inventory, object zoals een sleutel kunnen *meenemen* en *gebruiken*
-- Tilemap voor omgeving, of custom colliders op een achtergrondplaat
+
+- Eindeloos scrollende achtergrond
+- Speler kan alle kanten op *bewegen*
+- *Collision detection* met vijanden, powerups, obstakels
+- Speler kan *schieten*. Kogels kunnen *opgaan*.
+- Speler heeft bommen die het hele scherm in een keer *leeg maken*.
+- Vijanden kunnen *schieten*
+- Life bar gaat omlaag bij *aanraking* met vijand
+- Variatie in achtergond door planeten, sterren te laten *voorbijkomen* waar je niet mee kan *botsen*
 
 Bijbehorend gedrag:
 
-Camera class:
-- Rondlopen = volgen
-
 Player class:
-- Rondlopen = bewegen
-- Praten = interactie
-- meenemen = toevoegen aan inventory
-- gebruiken = gebruiken van item
+- bewegen = movement
+- schieten = shoot
+- leeg maken = ultimate move
+- aanraking = collision detection
+
+Enemy class:
+- schieten = shoot
+- aanraking = collision detection
 
 Object class:
-- door heen kunnen lopen = onbeweeglijk voorwerp
+- aanraking = collision detection
 
-Character class:
-- Praten = interactie
-
-Inventory class:
-- meenemen = toevoegen aan inventory
-- gebruiken = gebruiken van item
-
-Item class:
-- meenemen = toevoegen aan inventory
-- gebruiken = gebruiken van item
-
-World/map class:
-- Rondlopen = positie/coördineren
+Projectile class:
+- schieten = shoot
+- aanraking = collision detection
 
 ## Game Assets
 
