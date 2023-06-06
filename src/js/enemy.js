@@ -1,5 +1,6 @@
 import { Actor, Engine, Vector, Timer } from "excalibur"
 import { Resources } from './resources.js'
+import { Obstacle } from "./obstacle.js"
 import { Blast } from './blast.js'
 
 export class Enemy extends Actor {
@@ -36,12 +37,13 @@ export class Enemy extends Actor {
     }
 
     collisionWith(event){
-        if (event.other instanceof Blast) {
-            if (event.other.type == "Player") {
-                this.game.currentScene.updateScore()
-                this.timer.stop()
-                this.kill()
-            }
+        if ((event.other instanceof Blast && event.other.type == "Player")) {
+            this.game.currentScene.updateScore()
+            this.timer.stop()
+            this.kill()
+        } else if (event.other instanceof Obstacle) {
+            this.timer.stop()
+            this.kill()
         }
     }
 

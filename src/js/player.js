@@ -1,11 +1,11 @@
 import { Actor, Engine, Vector, Input } from "excalibur"
 import { Resources } from './resources.js'
 import { Enemy } from './enemy.js'
+import { Obstacle } from "./obstacle.js"
 import { Blast } from './blast.js'
 
 export class Player extends Actor {
     game
-    hp
 
     constructor(){
         super({
@@ -16,21 +16,16 @@ export class Player extends Actor {
 
     onInitialize(engine){
         this.game = engine
-        this.graphics.use(Resources.Player.toSprite())
-        this.hp = 100
+        this.sprite = Resources.Player.toSprite()
+        this.graphics.use(this.sprite)
         this.pos = new Vector(0, 300)
         this.on('collisionstart', (event) => this.collisionWith(event))
     }
 
     collisionWith(event){
-        if(event.other instanceof Enemy) {
+        if(event.other instanceof Enemy || event.other instanceof Obstacle || (event.other instanceof Blast && event.other.type == "Enemy")) {
             this.actions.blink(100, 100, 3)
             this.game.currentScene.hitByEnemy()
-        } else if (event.other instanceof Blast) {
-            if (event.other.type == "Enemy") {
-                this.actions.blink(100, 100, 3)
-                this.game.currentScene.hitByEnemy()
-            }
         }
     }
 
@@ -56,8 +51,11 @@ export class Player extends Actor {
         
         this.vel = new Vector(xspeed, yspeed)
 
-        if (engine.input.keyboard.wasReleased(Input.Keys.Space)) {
-            engine.add(new Blast("Player", this.pos))
+        if (engine.currentScene.ammo > 0) {
+            if (engine.input.keyboard.wasReleased(Input.Keys.Space)) {
+                engine.add(new Blast("Player", this.pos))
+                engine.currentScene.updateAmmo()
+            }
         }
     }
 }

@@ -25,5 +25,6 @@ export class Blast extends Actor {
             this.sprite.tint = new Color(255, 0, 0)
             this.vel = new Vector(-300,0)
         }
+        this.on("exitviewport", (event) => this.kill())
     }
 }
