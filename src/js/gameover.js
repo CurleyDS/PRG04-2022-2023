@@ -30,6 +30,26 @@ export class Gameover extends Scene {
         this.add(text)
     }
 
+    onActivate(ctx){
+        const previous = JSON.parse(localStorage.getItem("topScores"))
+        
+        if(previous) {
+            console.log(`localstorage SCORE: ${previous}`)
+
+            if (ctx.data) {
+                console.log(`ctx.data SCORE: ${ctx.data.score}`)
+                let newTopScores = previous
+                let newScore = {
+                    name: "anonimous",
+                    score: ctx.data.score
+                }
+                newTopScores.push(newScore)
+
+                localStorage.setItem("topScores", JSON.stringify(newTopScores))
+            }
+        }
+    }
+
     update(engine){
         if (engine.input.keyboard.wasReleased(Input.Keys.Enter)) {
             engine.goToScene('play')

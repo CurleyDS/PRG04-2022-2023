@@ -5,6 +5,7 @@ import { Blast } from './blast.js'
 export class Enemy extends Actor {
     game
     sprite
+    timer
 
     constructor(){
         super({
@@ -26,10 +27,22 @@ export class Enemy extends Actor {
             repeats: true,
             interval: 2000,
         })
+        this.timer = timer
         this.game.currentScene.add(timer)
         timer.start()
 
+        this.on('collisionstart', (event) => this.collisionWith(event))
         this.on("exitviewport", (event) => this.hqAttack())
+    }
+
+    collisionWith(event){
+        if (event.other instanceof Blast) {
+            if (event.other.type == "Player") {
+                this.game.currentScene.updateScore()
+                this.timer.stop()
+                this.kill()
+            }
+        }
     }
 
     hqAttack(){

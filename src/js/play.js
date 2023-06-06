@@ -8,6 +8,7 @@ import { Blast } from './blast.js'
 export class Play extends Scene {
     game
     score
+    scoreLabel
     player
 
     constructor(){
@@ -16,16 +17,30 @@ export class Play extends Scene {
 
     onInitialize(engine){
         console.log("Start game")
-        console.log(this)
         this.game = engine
+
+        const previous = JSON.parse(localStorage.getItem("topScores"))
+        
+        if(previous) {
+            console.log(`localstorage SCORE: ${previous}`)
+        }
+
+        let topScores = [
+            {
+                name: "anonimous",
+                score: 0
+            }
+        ]
+
+        localStorage.setItem("topScores", JSON.stringify(topScores))
 
         const bg = new Background()
         bg.graphics.use(Resources.Background.toSprite())
         bg.pos = new Vector(400, 300)
         this.add(bg)
-    
+
         const tutorial = new Label({
-            text: 'Press W-A-S-D to move around',
+            text: 'Press W-A-S-D to move around and press Space to shoot',
             color: Color.White,
             pos: new Vector(0, 25),
             font: new Font({
@@ -56,12 +71,24 @@ export class Play extends Scene {
                     label.kill()
                 }
             })
+            
+            this.scoreLabel = new Label({
+                text: `Score: ${this.score}`,
+                pos: new Vector(0, 50),
+                font: new Font({
+                    family: 'impact',
+                    size: 48,
+                    unit: FontUnit.Px,
+                    color: Color.White
+                })
+            })
+            this.add(this.scoreLabel)
         }, 3000)
     }
 
     onActivate(ctx){
         this.score = 0
-        
+
         const player = new Player()
         this.player = player
         this.add(player)
@@ -74,6 +101,11 @@ export class Play extends Scene {
         this.add(timer)
         timer.start()
     }
+
+    updateScore(){
+        this.score += 10
+        this.scoreLabel.text = `Score: ${this.score}`
+    }
     
     hitByEnemy(){
         if (this.player.hp > 0) {
@@ -83,14 +115,15 @@ export class Play extends Scene {
             this.player.kill()
             this.actors.forEach(actor => {
                 if (actor instanceof Enemy || actor instanceof Blast) {
-                    console.log(actor)
                     actor.kill()
                 }
             })
             this.timers.forEach(timer => {
                 timer.stop()
             })
-            this.game.goToScene('gameover')
+            this.game.goToScene('gameover', { score: this.score })
+            this.score = 0
+            this.scoreLabel.text = `Score: ${this.score}`
         }
     }
 }

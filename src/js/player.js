@@ -19,15 +19,16 @@ export class Player extends Actor {
         this.graphics.use(Resources.Player.toSprite())
         this.hp = 100
         this.pos = new Vector(0, 300)
-        this.on('collisionstart', (event) => this.collisionWith(engine, event))
+        this.on('collisionstart', (event) => this.collisionWith(event))
     }
 
-    collisionWith(engine, event){
-        this.actions.blink(100, 100, 3)
+    collisionWith(event){
         if(event.other instanceof Enemy) {
+            this.actions.blink(100, 100, 3)
             this.game.currentScene.hitByEnemy()
         } else if (event.other instanceof Blast) {
             if (event.other.type == "Enemy") {
+                this.actions.blink(100, 100, 3)
                 this.game.currentScene.hitByEnemy()
             }
         }
@@ -55,8 +56,8 @@ export class Player extends Actor {
         
         this.vel = new Vector(xspeed, yspeed)
 
-        // if (engine.input.keyboard.wasReleased(Input.Keys.Space)) {
-        //     engine.add(new Blast("Player", this.pos))
-        // }
+        if (engine.input.keyboard.wasReleased(Input.Keys.Space)) {
+            engine.add(new Blast("Player", this.pos))
+        }
     }
 }
