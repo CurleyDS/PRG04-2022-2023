@@ -3,9 +3,13 @@ import { Resources } from './resources.js'
 import { Enemy } from './enemy.js'
 import { Obstacle } from "./obstacle.js"
 import { Blast } from './blast.js'
+import { Powerup } from "./powerup.js"
+import { Starmode } from "./starmode.js"
 
 export class Player extends Actor {
     game
+    starmode
+    sprite
 
     constructor(){
         super({
@@ -16,6 +20,7 @@ export class Player extends Actor {
 
     onInitialize(engine){
         this.game = engine
+        this.starmode = false
         this.sprite = Resources.Player.toSprite()
         this.graphics.use(this.sprite)
         this.pos = new Vector(0, 300)
@@ -23,9 +28,20 @@ export class Player extends Actor {
     }
 
     collisionWith(event){
-        if(event.other instanceof Enemy || event.other instanceof Obstacle || (event.other instanceof Blast && event.other.type == "Enemy")) {
-            this.actions.blink(100, 100, 3)
-            this.game.currentScene.hitByEnemy()
+        if (!this.starmode) {
+            if(event.other instanceof Enemy || event.other instanceof Obstacle || (event.other instanceof Blast && event.other.type == "Enemy")) {
+                this.actions.blink(100, 100, 3)
+                this.game.currentScene.hitByEnemy()
+            } else if(event.other instanceof Powerup) {
+                this.starmode = new Starmode()
+                this.addChild(this.starmode)
+                this.game.currentScene.starMode()
+                this.game.clock.schedule(() => {
+                    this.removeChild(this.starmode)
+                    this.starmode = false
+                    this.game.currentScene.starMode()
+                }, 10000)
+            }
         }
     }
 
@@ -51,10 +67,12 @@ export class Player extends Actor {
         
         this.vel = new Vector(xspeed, yspeed)
 
-        if (engine.currentScene.ammo > 0) {
+        if (engine.currentScene.ammo > 0 || this.starmode) {
             if (engine.input.keyboard.wasReleased(Input.Keys.Space)) {
                 engine.add(new Blast("Player", this.pos))
-                engine.currentScene.updateAmmo()
+                if (!this.starmode) {
+                    engine.currentScene.updateAmmo()
+                }
             }
         }
     }

@@ -187,9 +187,23 @@ export class Play extends Scene {
             this.game.goToScene('gameover', { score: this.score })
             this.score = 0
             this.scoreLabel.text = `Score: ${this.score}`
+            this.hp = 100
+            this.hpLabel.text = `HP: ${this.hp}`
+            this.ammo = 20
+            this.ammoLabel.text = `Ammo: ${this.ammo}`
         }
     }
-
+    
+    starMode(){
+        if (this.player.starmode) {
+            this.hpLabel.text = `HP: ∞`
+            this.ammoLabel.text = `Ammo: ∞`
+        } else {
+            this.hpLabel.text = `HP: ${this.hp}`
+            this.ammoLabel.text = `Ammo: ${this.ammo}`
+        }
+    }
+    
     spawnPowerup(){
         this.game.clock.schedule(() => {
             this.add(new Powerup())
