@@ -1,12 +1,11 @@
 import { Scene, Actor, Engine, Vector, Label, FontUnit, Font, Color, Timer } from "excalibur";
-import { Resources } from './resources.js'
 import { Background } from "./background.js";
 import { BgObject } from "./backgroundobject.js";
-import { Player } from './player.js'
-import { Enemy } from './enemy.js'
+import { Player } from './player.js';
+import { Enemy } from './enemy.js';
 import { Powerup } from "./powerup.js";
-import { Obstacle } from './obstacle.js'
-import { Blast } from './blast.js'
+import { Obstacle } from './obstacle.js';
+import { Blast } from './blast.js';
 
 export class Play extends Scene {
     game
@@ -26,25 +25,7 @@ export class Play extends Scene {
     onInitialize(engine){
         this.game = engine
 
-        const previous = JSON.parse(localStorage.getItem("topScores"))
-        let topScores
-        
-        if(previous) {
-            topScores = previous
-        } else {
-            topScores = [
-                {
-                    name: "anonimous",
-                    score: 0
-                }
-            ]
-        }
-
-        localStorage.setItem("topScores", JSON.stringify(topScores))
-
         const bg = new Background()
-        bg.graphics.use(Resources.Background.toSprite())
-        bg.pos = new Vector(400, 300)
         this.add(bg)
 
         const tutorial = new Label({

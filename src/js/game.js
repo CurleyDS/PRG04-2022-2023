@@ -1,6 +1,7 @@
-import '../css/style.css'
-import { Engine } from "excalibur"
-import { ResourceLoader } from './resources.js'
+import '../css/style.css';
+import { Engine } from "excalibur";
+import { ResourceLoader } from './resources.js';
+import { Start } from "./start.js";
 import { Play } from "./play.js";
 import { Gameover } from "./gameover.js";
 
@@ -16,10 +17,11 @@ export class Game extends Engine {
     }
 
     startGame(){
+        this.addScene('start', new Start())
         this.addScene('play', new Play())
         this.addScene('gameover', new Gameover())
 
-        this.goToScene('play')
+        this.goToScene('start')
     }
 }
 
