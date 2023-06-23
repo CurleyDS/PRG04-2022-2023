@@ -34,7 +34,7 @@ export class Start extends Scene {
         this.add(text)
     }
 
-    update(engine){
+    onPreUpdate(engine){
         if (engine.input.keyboard.wasReleased(Input.Keys.Enter)) {
             engine.goToScene('play')
         }

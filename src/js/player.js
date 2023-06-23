@@ -45,7 +45,7 @@ export class Player extends Actor {
         }
     }
 
-    update(engine){
+    onPreUpdate(engine){
         let xspeed = 0
         let yspeed = 0
 

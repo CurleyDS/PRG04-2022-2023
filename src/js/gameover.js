@@ -189,7 +189,7 @@ export class Gameover extends Scene {
         }
     }
 
-    update(engine){
+    onPreUpdate(engine){
         if (engine.input.keyboard.wasReleased(Input.Keys.Enter)) {
             engine.goToScene('play')
         }
