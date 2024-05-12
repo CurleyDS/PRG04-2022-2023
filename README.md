@@ -1,4 +1,4 @@
-# [Space Meteors](http://curleyds.github.io/PRG04-2022-2023)
+# [Link naar de game.](http://curleyds.github.io/PRG04-2022-2023)
 
 # Inleveropdracht
 
